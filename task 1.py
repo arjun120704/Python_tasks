@@ -1,0 +1,57 @@
+#create empty list to store
+todo_list=[]
+
+#using function to add the items
+def  add_task():
+    task=input("enter the task:")
+    todo_list.append({"task":task,"status":"pending"})
+    print("task added sucessfully...")
+
+#to view task in the list 
+def view_task():
+    print("todo list..")
+    if len(todo_list)==0:
+        print("no pending task!")
+    else:
+        for a,task in enumerate(todo_list,1):
+            print(f"{a}:{task['task']} - {task['status']}")
+        print()
+
+#function to mark task as done
+def mark_done():
+    if len(todo_list)==0:
+        print("empty list")
+    else:
+       try:
+           search_index=int(input("enter the task number that you want marked as complete:"))-1
+           if 0<=search_index < len(todo_list):
+               todo_list[search_index]['status']='done'
+               print(f"task {todo_list[search_index]['task']} has been marked as done")
+           else:
+               print("invalid task number..")
+       except ValueError:
+           print("please enter the valid task num")
+            
+#function to display menu
+def menu():
+     while (True):
+        print(" main menu ")
+        print("1.add a new task")
+        print("2.view all task")
+        print("3.mark a task as completed")
+        print("4.exit")
+
+        choice=input("enter the menu choice:")
+
+        if choice=="1":
+            add_task()
+        elif choice=="2":
+            view_task()
+        elif choice=="3":
+            mark_done()
+        elif choice=="4":
+            print("exit the application...")
+            exit()
+        else:
+            print("invalid choice!!!...")
+menu()
